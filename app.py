@@ -1,10 +1,18 @@
 from flask import Flask, request, render_template
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
+mongo = PyMongo(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
+
+@app.route('/test')
+def home_page():
+    online_users = mongo.db.books.find({'author':'qiwsir'})
+    return render_template('home.html',
+        online_users=online_users)
 
 @app.route('/signin', methods=['GET'])
 def signin_form():
