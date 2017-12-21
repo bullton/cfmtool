@@ -1,0 +1,64 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block styles %}
+    <link rel="stylesheet"
+          href="/static/css/bootstrap.min.css">
+{% endblock %}
+{% block navbar %}
+  {{nav.mynavbar.render()}}
+{% endblock %}
+
+{% block content %}
+    <div id="content" class="container-fluid">
+      <div class="row">
+        <!--left-->
+        <div class="col-md-3" id="leftCol">
+          <ul class="nav nav-stacked" id="sidebar">
+            <li>
+              <label>Filter rules:</label>
+            </li>
+            <li>
+              <form>
+              	<div class="form-inline">
+                  <select class="form-control" id="rules"> <!--talent-->
+                    <option>{{name}}</option>
+                    <option>Huang Peter2</option>
+                  </select>
+                  <button id="proceed" type="submit" class="btn btn-default">Proceed</button>
+                </div>
+              </form>
+            </li>
+            <li><hr></li>
+            <li>
+              <form enctype="multipart/form-data" method="POST" action="">
+                <label class="control-label">Select Source</label>
+                <input name="inputsource" type="file" class="file">
+              </form>
+            </li>
+          </ul>
+        </div><!--/left-->
+
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">Filter Report</div>
+                <div class="panel-body">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Step</th>
+                        <th>Result</th>
+                      </tr>
+                    </thead>
+                    <tbody id="analyzeReport">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div><!--/row-->
+    </div>
+{% endblock %}
