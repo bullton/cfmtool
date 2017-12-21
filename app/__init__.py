@@ -5,6 +5,7 @@ from flask_nav.elements import *
 
 
 app = Flask(__name__)
+app.config.from_object('config')
 nav = Nav()
 
 Bootstrap(app)

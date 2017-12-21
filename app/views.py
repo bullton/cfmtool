@@ -1,6 +1,8 @@
 from flask import render_template
 from flask_pymongo import PyMongo
 from app import app
+from app.form import BaseLogin
+from flask import url_for
 
 app.config.update(
     MONGO_HOST='127.0.0.1',
@@ -32,3 +34,12 @@ def index():
         user = user,
         posts = posts,
         name = books['author'])
+
+@app.route("/test",methods=['GET','POST'])
+def TTest():
+    form = BaseLogin()
+    if form.validate_on_submit():
+        flash(form.name.data+'|'+form.password.data)
+        return redirect(url_for('success'))
+    else:
+        return render_template('index.html',form=form)
